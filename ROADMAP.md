@@ -62,16 +62,37 @@ Simulate 3 monthly info-dates (paper uses 6; we simplify): (A) last day before t
 ## M7 — Stretch (pick any, unbounded)
 - **Real-time honesty:** pull ALFRED vintages for CPI/PCE (`fredapi` supports `get_series_as_of_date`; Yi has an API key) and rerun M6. Compare pseudo vs true real-time RMSE. Known data gap: gasoline-CPI vintages don't exist before Apr 2011 (paper used Haver) — treat pre-2011 as final-vintage and note the caveat. EIA weekly gasoline and Brent are effectively unrevised, so vintages are irrelevant for them. Blue Chip is proprietary; Greenbook/Tealbook and SPF nowcasts come from the Philadelphia Fed website, not FRED.
 - **DM tests:** implement Diebold–Mariano with the Harvey small-sample correction; test model vs random walk.
-- **ML extension** (candidates agreed 2026-07-11, in order of insight-per-effort):
-  1. Ridge/elastic net replacing eq (10) OLS — shrinkage vs short-rolling-window as rival fixes for parameter instability.
-  2. LASSO on a widened disaggregate set (PPI components, RBOB gasoline futures, import prices, wages) — does variable selection rediscover the paper's 4 regressors?
-  3. Gradient boosting / random forest — tests nonlinearity, esp. asymmetric oil→gasoline pass-through ("rockets and feathers"); cf. Medeiros et al. (2021, JBES): random forests beat linear benchmarks for US inflation.
-  4. U-MIDAS with ridge — use weekly/daily data directly instead of the two-stage ECM.
-  5. Composites: equal-weight average of model + MA12 + UC-SV (hard to beat), then stacking with rolling-window weights.
-  Avoid LSTMs/deep nets: ~250 monthly obs. Non-negotiable discipline: same calendar harness, same information sets, tuning on expanding windows only, and the benchmark to beat is YOUR replicated model, not the random walk.
+- **ML extension:** promoted to a full milestone — see **M8** below (decided 2026-07-13; interpretability-first). Further ideas that stayed in the stretch pile: U-MIDAS with ridge (weekly/daily data directly instead of the two-stage ECM); composites (equal-weight average of model + MA12 + UC-SV, then stacking with rolling-window weights).
 - **Quarterly layer:** aggregate monthly nowcasts to quarterly (M1 machinery) and reproduce the 14-case quarterly RMSE decline.
+
+## M8 — Interpretable ML horse-race (~3–4 hrs)
+
+Scope agreed 2026-07-13: ML models may enter only if their fitted behavior can be *read* — coefficients, selection sets, shape functions. Pure black boxes appear only as accuracy ceilings to interpret against. All sklearn, no new dependencies. Avoid LSTMs/deep nets: ~250 monthly obs, and they fail the interpretability bar.
+
+**Non-negotiable discipline (inherited from the paper):** same M6 calendar harness and information sets; any tuning uses data *before* the forecast date only (expanding/rolling — never the evaluation sample); the benchmark to beat is **your replicated eq-(10) model**, not the random walk. The self-test harness isolates the model-class question by feeding every model the *actual* month-t disaggregates as hats ("perfect disaggregates") — hat generation is identical across models anyway, so this compares regressions, not pipelines.
+
+### M8a — Ridge: shrinkage vs short windows (~1 hr)
+Implement `ridge_headline_forecast(...)`: eq (10) with an L2 penalty (standardize regressors inside the window; never penalize the intercept). Study the provided rolling coefficient-path plot: OLS coefficients on 24-month windows jump around (the parameter instability that motivated the paper's short windows) while ridge smooths them — shrinkage and short windows are rival cures for the same disease.
+- **Checkpoint:** Why do short rolling windows and shrinkage address the same problem? Under what data conditions would ridge on a 60-month window beat OLS on a 24-month window?
+- **Self-test:** `alpha=0` reproduces the OLS forecast; `alpha→∞` collapses to the window mean; expanding-window-tuned ridge RMSE ≤ 1.05 × eq-(10) OLS RMSE on the case-B harness.
+- **Pitfall:** standardizing on the full sample (leakage) — fit the scaler inside each window; tuning alpha on the evaluation sample.
+
+### M8b — LASSO: does selection rediscover the paper? (~1 hr)
+Widen the regressor set with 4 more FRED series — `WPS0571` (PPI gasoline, SA), `IR` (import price index, NSA — deliberate: watch what LASSO does with a noisy NSA series), `AHETPI` (avg hourly earnings, SA), `DGASUSGULF` (Gulf Coast gasoline spot, daily) — and implement `lasso_selection(...)`: rolling `LassoCV` (TimeSeriesSplit) recording which regressors get nonzero coefficients in each window.
+- **Checkpoint:** Which regressors survive, and how stable is the selection across windows? The gasoline "twins" (CPI gas, PPI gas, spot gas) are nearly collinear — what does LASSO do with collinear twins, and why does that mean you should report the selection *family*, not the individual pick?
+- **Self-test:** at least one gasoline-family regressor is selected in ≥80% of windows; a selection-frequency table prints.
+- **Pitfall:** full-sample standardization (leakage); random K-fold CV on time series — use `TimeSeriesSplit`.
+
+### M8c — Nonlinearity you can read: DIY GAM (~1–1.5 hrs)
+Implement `spline_additive_forecast(...)`: per-feature `SplineTransformer` + `Ridge` in one sklearn `Pipeline` — an *additive* model whose per-feature shape functions you plot and read directly. Target question: is headline's response to gasoline swings asymmetric (the "rockets and feathers" pass-through story)? Ceiling: `HistGradientBoostingRegressor`, read through `partial_dependence` — an accuracy ceiling to interpret, not a candidate model.
+- **Checkpoint:** From the fitted gasoline shape function: is the pass-through asymmetric? Why does additivity keep the model readable while a random forest is not? Did nonlinearity actually pay in RMSE — and if not, why might 60-month windows be too short for it to?
+- **Self-test:** the spline model beats the monthly random walk on the case-B harness; RMSE vs eq (10) and vs the boosting ceiling is reported (no assert on who wins — honest horse-race); the gasoline shape plot renders.
+- **Pitfall:** splines on 24-month windows will overfit badly — M8c uses 60 months; disclose that deviation from eq (10)'s window whenever you compare RMSEs.
+
+### M8 closing checkpoint
+Which of the paper's design choices did you keep in the ML version, and why? (Expected: the calendar discipline, the information sets, past-only tuning — the model class is the least important part.)
 
 ---
 
 ## Suggested pace
-M0–M1 in one sitting (concepts are light, sets up everything). M2 + M4 together (both are "simple model, deep why"). M3 alone (hardest block). M5 alone (the paper's actual contribution). M6 to close the loop. Total ≈ 10–14 focused hours.
+M0–M1 in one sitting (concepts are light, sets up everything). M2 + M4 together (both are "simple model, deep why"). M3 alone (hardest block). M5 alone (the paper's actual contribution). M6 to close the loop. Total ≈ 10–14 focused hours. M8 only after M6 is green (it reuses the harness and the eq-(10) benchmark); ideally do M7's Diebold–Mariano tests first so the M8 horse-race comes with significance tests, +3–4 hrs.
