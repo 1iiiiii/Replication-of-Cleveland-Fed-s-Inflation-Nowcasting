@@ -1,0 +1,1829 @@
+w o r k i n g
+p
+
+a
+
+p
+
+e
+
+r
+
+14 03
+
+Nowcasting U.S. Headline and
+Core Inflation
+Edward S. Knotek II and Saeed Zaman
+
+FEDERAL RESERVE BANK OF CLEVELAND
+
+Working papers of the Federal Reserve Bank of Cleveland are preliminary materials circulated to
+stimulate discussion and critical comment on research in progress. They may not have been subject to the
+formal editorial review accorded official Federal Reserve Bank of Cleveland publications. The views stated
+herein are those of the authors and are not necessarily those of the Federal Reserve Bank of Cleveland or of
+the Board of Governors of the Federal Reserve System.
+Working papers are available at:
+
+www.clevelandfed.org/research.
+
+Working Paper 14-03
+
+May 2014
+
+Nowcasting U.S. Headline and Core Inflation
+Edward S. Knotek II* and Saeed Zaman
+
+Forecasting future inflation and nowcasting contemporaneous inflation are
+difficult. We propose a new and parsimonious model for nowcasting headline
+and core inflation in the U.S. price index for personal consumption expenditures
+(PCE) and the consumer price index (CPI). The model relies on relatively few
+variables and is tested using real-time data. The model’s nowcasting accuracy
+improves as information accumulates over the course of a month or quarter,
+and it easily outperforms a variety of statistical benchmarks. In head-to-head
+comparisons, the model’s nowcasts of CPI inflation outperform those from the
+Blue Chip consensus, with especially significant outperformance as the quarter
+goes on. The model’s nowcasts for CPI and PCE inflation also significantly
+outperform those from the Survey of Professional Forecasters, with similar
+nowcasting accuracy for core inflation measures. Across all four inflation
+measures, the model’s nowcasting accuracy is generally comparable to
+that of the Federal Reserve’s Greenbook.
+
+Keywords: inflation, nowcasting, forecasting, real-time data, professional
+forecasters, Greenbook.
+JEL classifications: E3, E37, C53.
+Suggested citation: Knotek, Edward S. II, and Saeed Zaman, 2014. “Nowcasting U.S. Headline and Core Inflation,” Federal Reserve Bank of Cleveland,
+working paper no. 14-03.
+
+*Corresponding author. Edward S. Knotek II and Saeed Zaman are at the Federal
+Reserve Bank of Cleveland. They thank Todd Clark, Randy Verbrugge, their
+discussant Michele Modugno, and participants at the Federal Reserve System
+Committee on Macroeconomics meeting for very helpful comments, and Bill
+Bednar for his assistance in compiling the real-time data used for this study.
+
+I. Introduction
+
+Inflation developments are important to a wide swath of economic actors, and projections of
+future inflation influence the present behavior of financial market participants, consumers and
+firms, and central banks. Unfortunately, a long literature has documented that inflation is
+extremely difficult to forecast accurately. These difficulties extend to contemporaneous
+forecasting of the inflation rate in the current month or current quarter, or nowcasting. As a
+result, the best available benchmarks for current quarter inflation nowcasting come from surveys
+of professional forecasters who employ a range of objective and subjective information. We
+present a relatively parsimonious statistical model that in many cases outperforms these
+benchmarks in terms of inflation nowcasting accuracy.
+Our model nowcasts U.S. headline and core consumer inflation as measured by the price
+index for personal consumption expenditures (PCE) and the consumer price index (CPI) using a
+judiciously chosen small number of data series at different frequencies. Within our model, highfrequency data affect monthly nowcasts, and monthly nowcasts aggregate to form quarterly
+nowcasts. To take advantage of the sequencing of incoming data over the course of a month or
+quarter, the model features time-varying weights on disaggregate and aggregate variables in
+forecasting the aggregate coupled with deterministic model switching that depends on the
+available information set; disaggregates are only used when sufficient data are available to make
+them informative. Beyond these time-varying weights, we follow the recent literature that has
+emphasized the benefits of simplicity in inflation forecasting—as notably embodied in Atkeson
+and Ohanian (2001), among others—and rely on univariate and simple multivariate techniques
+estimated over relatively short rolling windows. These short rolling windows, along with high-
+
+2
+
+frequency energy price data, play a key role in improving nowcasting accuracy. We view the
+relative parsimony of the model as a virtue, given the difficulties in forecasting inflation and the
+risks of overfitting forecasting exercises to historical patterns that may not persist into the future.
+Taking the model to the data requires real-time data. This is especially true for PCE
+inflation, which is heavily revised with new data sources and benchmark revisions. But monthly
+and quarterly CPI inflation readings using seasonally adjusted data are also subject to substantive
+revisions: we document that revisions to headline CPI inflation are as large as revisions to
+headline PCE in absolute terms, though core CPI inflation revisions are slightly smaller than
+those for core PCE. Unfortunately, the availability of real-time data limits tests of the model to a
+relatively short time span, with the earliest readings available for 1999.
+Over this time period, we show that the model’s nowcasts easily outperform a variety of
+statistical benchmarks, especially over the course of a month or quarter. We then compare the
+model’s performance with arguably the best available benchmarks (see, e.g., Faust and Wright
+2013): subjective nowcasts from professional forecasters, both aggregates from private
+forecasters—as captured by the Blue Chip Economic Indicators consensus and the median
+forecast from the Federal Reserve Bank of Philadelphia’s Survey of Professional Forecasters
+(SPF)—and the forecasts from the Federal Reserve Board of Governors staff in the Greenbook.
+Notably, the comparison period includes volatile times that might be expected to favor subjective
+forecasts, including large swings in world oil prices, a financial crisis, and a deep recession.
+The model’s nowcasts in many cases outperform those from professional forecasters in
+terms of accuracy. In real-time out-of-sample comparisons, the model’s nowcasts of headline
+CPI inflation outperform those from the Blue Chip consensus, with especially significant
+outperformance as the quarter goes on. The model’s nowcasts for headline CPI and PCE
+
+3
+
+inflation also significantly outperform those from the SPF, with similar nowcasting accuracy for
+core inflation measures. Across all four inflation measures, the model’s nowcasting accuracy is
+comparable to that of the Greenbook.
+Improving upon inflation nowcasting is not only of interest for its own sake. Recent
+work (e.g., Faust and Wright 2013, and Del Negro and Schorfheide 2013) shows that inflation
+forecasts at longer horizons benefit by employing more accurate conditioning via nowcasts.
+Thus, the compact model we present in this paper has broad applications to both academic
+economists and professional forecasters.
+Our paper marks a departure from much of the nowcasting literature. In contrast to
+research that extracts common factors from a large number of data series, we judiciously choose
+a small number of data series at different frequencies to inform our nowcasts and do not use
+factor models. While the seminal nowcasting working paper of Giannone et al. (2006) originally
+considered both GDP and inflation, much of the nowcasting literature has proceeded to focus on
+GDP, following in the footsteps of the published version of Giannone et al. (2008). In one
+exception, Modugno (2013) applies a factor model—with a larger number of factors compared
+with the limited set of variables we work with—to nowcast year-over-year U.S. CPI inflation
+from one month to the next. We focus instead on nowcasting quarterly inflation, as this is the
+usual jumping-off point for economists doing quarterly forecasting exercises. Additionally,
+Monteforte and Moretti (2013) employ factor models to nowcast Euro area inflation.
+Nevertheless, despite its different structure, our inflation nowcasting model shares the finding in
+the nowcasting literature that as time passes and additional information arrives, nowcasts of the
+current period become more accurate on average (e.g., Bańbura et al. 2013).
+
+4
+
+This paper proceeds as follows. Section II presents the model we use for inflation
+nowcasting. Section III discusses the real-time data available for use in our study. Section IV
+assesses the model’s performance for monthly and quarterly nowcasting, and Section V
+compares the model’s inflation nowcasting accuracy with other forecasters. Section VI analyzes
+the sensitivity of our model to alternative specifications, and Section VII concludes.
+
+II. An Inflation Nowcasting Model
+
+At its core, our model follows a parsimonious approach to nowcasting inflation. First, we rely
+on a judiciously chosen set of data series to inform our estimates. Second, we combine relatively
+simple univariate and multivariate regression techniques. Third, we impose time-varying
+weights on disaggregate and aggregate variables in nowcasting the aggregate. These timevarying weights deterministically depend on the information set available at a given point in
+time, thereby taking advantage of the nature of the information flow to improve nowcasting
+accuracy. Disaggregate information is used for nowcasting the aggregate, in the spirit of Hendry
+and Hubrich (2011)—but only when this information is available and informative, resulting in
+time-varying weights, as discussed in Lütkepohl (2010).
+Quarterly inflation  T is usually measured at seasonally adjusted annualized rates as1
+
+(1)
+
+ P  4 
+ T  100  T   1 ,
+ PT 1 
+
+
+where PT denotes the price level in quarter T, which is the average of the three monthly price
+levels in that quarter:
+1
+
+Notably, this formula is consistent with the way that the U.S. Bureau of Economic Analysis and the Blue Chip
+Economic Indicators survey report quarterly inflation rates, and we follow their convention.
+
+5
+
+PT 
+
+(2)
+
+1
+ PT ,t 1  PT ,t 2  PT ,t 3  .
+3
+
+Our nowcasting approach maintains consistency with this method of computing inflation: we
+keep track of available monthly price levels and then nowcast or forecast the missing monthly
+readings of a given quarter to construct quarterly inflation rates.
+Our model takes the form
+J
+
+(3)
+
+A s ( t ) Z t  B s ( t )  C s ( t ) Xt   D j , s ( t ) Z t  j  ε s ( t ) ,
+j 1
+
+where Zt is an n1 vector of aggregates, Xt is an m1 vector of disaggregates that are
+informative over Zt, and ε s (t ) ~ N (0, Σ) . The coefficient matrices A, B, C, and Dj are n  n ,
+n1 , n  m , and n  n , respectively, and are allowed to vary over time depending on the
+
+available information set, denoted s(t); in particular, C and Dj measure the weights put on the
+disaggregates and lagged aggregates, respectively.
+This general model structure allows us to incorporate information coming from diverse
+sources. First and foremost, given the strong correlation between energy price volatility and
+headline price index volatility, high-frequency information on energy prices is an especially
+useful disaggregate component to have in nowcasting headline inflation.2 By contrast, when
+energy price volatility is tame, focusing on core inflation as another disaggregate can be helpful
+given that core prices have a much larger weighting in headline inflation. Second, the timing of
+data releases influences inflation nowcasting. In the United States, the Bureau of Labor Statistics
+(BLS) typically releases the consumer price index for a given month around the middle of the
+following month; e.g., the December CPI is released around mid-January. Thus, an open
+2
+
+The results in Stock and Watson (2003) suggest some predictive content from oil prices for U.S. inflation, but
+these can differ from the gasoline prices we use. In addition, Stock and Watson (2003) consider inflation forecasts
+over longer time horizons. Modugno (2013) also discusses the importance of high-frequency energy prices in
+nowcasting inflation.
+
+6
+
+question is the availability of higher frequency data that would be available prior to the release of
+the CPI and would have predictive content. The Bureau of Economic Analysis (BEA) typically
+releases the other major measure of consumer prices, the price index for personal consumption
+expenditures, around the end of the following month; e.g., the December PCE price index is
+released around the end of January, after the CPI for December is released. While the contents,
+coverage, and construction of the two price indexes differ, the CPI may have predictive content
+over the PCE price index during the interim period before the latter is released.
+
+Nowcasting Core Inflation
+
+High-frequency disaggregate data that have predictive content over core inflation are
+limited.3 There are similar limitations on the availability of real-time disaggregated core
+inflation series at the monthly frequency, such as core goods and core services series.4 Thus, if
+Zt  [ tCore CPI ,  tCore PCE ]' is the aggregate of interest—where  tCore CPI and  tCore PCE are the month-
+
+over-month core CPI inflation rate and core PCE inflation rate in month t, respectively—then
+
+Xt  0 in equation (3). In the absence of disaggregate information, we rely on the spirit of
+Atkeson and Ohanian (2001), who find that inflation over the previous four quarters is a difficult
+forecasting benchmark model to beat: assuming data through month t−1 are available, we
+forecast monthly core inflation Zˆ t using recursive 12-month moving averages, by fixing
+
+3
+
+We do not explore The Billion Prices Project at MIT as a potential disaggregate for this paper, but our framework
+would be able to incorporate it in the vector Xt. While that data series may have predictive content for core
+inflation, it only began in 2008 and is based predominantly on goods prices from online retailers. By contrast, core
+price indexes typically place a large weight on services, and internet purchases (and thus internet prices) comprise a
+small portion of consumer spending on goods.
+4
+Peach et al. (2013) find it useful for forecasting purposes to separate core CPI goods inflation and core CPI
+services inflation and model the series separately, but their forecasting horizon is four quarters. Limited real-time
+monthly core goods and services data prevent a similar disaggregation in this paper.
+
+7
+
+As (t )  I 2 , Bs (t )  0, D j ,s (t )  (1/12)I 2 , J  12 .
+
+(4)
+
+As mentioned above, we also need to account for the timing of information flows when
+making nowcasts. Given that CPI releases typically precede PCE releases by two weeks, we can
+take advantage of this timing mismatch in this state to enhance nowcasting accuracy: the
+additional monthly core CPI inflation rate  tCore CPI for month t is informative in nowcasting asyet-unreleased monthly core PCE inflation in that month. Conditional on this state, the timevarying weights in equation (3) become
+
+ 0 0
+0
+A s (t )  
+, B s (t )    , D j , s (t )  0  j ,
+
+ a21 1 
+b2 
+
+(5)
+
+in what is essentially a bridge equation from core CPI to core PCE inflation. The coefficients in
+(5) can be estimated over some window of length τ to forecast ˆtCore PCE . Beyond month t,
+however, neither disaggregate nor further core CPI data are available, and future monthly core
+
+ˆ  [ˆ Core CPI , ˆ Core PCE ]' , k=1,2,…, revert to recursively using equation (4).
+inflation forecasts Z
+t k
+t k
+t k
+
+Nowcasting Headline Inflation
+
+In addition to core prices, food prices and energy prices are other key disaggregates for
+headline inflation.
+In theory, high-frequency futures and spot market prices for raw food items could have
+predictive content over monthly consumer food inflation  tFood and serve as useful disaggregate
+indicators Xt for food inflation and thus headline inflation. However, raw food prices are a small
+determinant of consumer food prices, especially as food goes through processing, and it is
+unclear which futures and spot market prices or price indexes would be most powerful in
+8
+
+predicting food inflation. As such, we follow the principle of parsimony and forecast monthly
+food inflation as we did for monthly core inflation in the absence of disaggregate information:
+assuming we have data through month t−1, we forecast ˆtFood  (1/12) j 1 tFood
+and can then
+j
+12
+
+5
+recursively forecast ˆtFood
+ k , k=1,2,….
+
+Energy prices offer a contrast to food prices, because gasoline prices dominate
+fluctuations in consumer energy prices, and gasoline prices are heavily influenced by oil prices.6
+Gasoline prices and oil prices are available at a higher frequency than monthly and can be used
+to nowcast gasoline price inflation after seasonal adjustment, ˆtGasoline , which can also be used as
+one of the disaggregate variables in nowcasting headline inflation.
+If gasoline price data are available within month t, let Pt Gasoline (NSA) be the average of those
+non-seasonally adjusted prices and use them to compute monthly gasoline inflation,  tGasoline (NSA) .
+We nowcast ˆtGasoline by using the recent past to seasonally adjust  tGasoline (NSA) .7
+If gasoline price data are not available within month t, we exploit the fact that gasoline
+prices over the next month tend to return toward the level predicted by the most recently
+
+5
+
+There are separate series for food in the CPI and the PCE price index, and the appropriate disaggregate series
+therefore could differ as well. In the CPI, the food index encompasses both food at home and food away from
+home, and the core CPI by extension excludes food at home and food away from home. In the PCE price index,
+food and beverages purchased for off-premises consumption are classified as nondurable goods and are excluded
+from the core PCE price index. However, food services and accommodations—a category that includes purchased
+meals and beverages—are classified as services and are included in the core PCE price index. This change took
+effect with the BEA’s 2009 comprehensive revisions. Given real-time data limitations discussed in more detail
+below, we consider a single CPI food series that is used as a disaggregate measure for both CPI and PCE inflation.
+6
+Since 1997, the monthly correlation between energy inflation and gasoline inflation in the CPI is 0.97 and gasoline
+prices explain about 79% of the variance of energy prices, despite the fact that gasoline is only about half of the
+energy basket.
+7
+We construct historical seasonal factors by subtracting monthly inflation in the seasonally adjusted CPI for
+Gasoline
+(NSA)
+gasoline  tCPI,
+from our measure of monthly gasoline price inflation based on high-frequency data  tGasoline
+j
+j
+and then apply the average seasonal factor over the last three years to the current month’s  tGasoline (NSA) to nowcast
+(NSA)
+Gasoline
+ˆtGasoline ; i.e., letting sft  (1/ 3) j 1 year ( tGasoline
+  tCPI,
+) , ˆtGasoline   tGasoline (NSA)  sft . Note that gasoline
+j
+j
+3 years
+
+CPI readings only enter into seasonal adjustment; in what follows, ˆtGasoline is our disaggregate of interest.
+
+9
+
+observed oil price.8 We implement this relationship as follows. Letting Pt Oil
+1 denote the average
+of available oil price readings within month t−1, assume that oil prices follow a random walk at a
+daily frequency to extend the monthly oil price series by one additional monthly observation to
+
+Pˆt Oil .9 Because movements in oil prices pass through to gasoline prices, the length of the
+gasoline inflation series can be extended to month t following a two-stage regression. First, we
+posit a longer-run relationship between oil and gasoline prices:
+Pt Gasoline (NSA)     Pt Oil  error1,t ;
+
+(6)
+
+we let Pt Gasoline (NSA) denote the predicted gasoline price based on equation (6). Second, we posit
+an error correction model that incorporates the lagged discrepancy between gasoline prices and
+their predicted value:
+
+
+
+
+
+(NSA)
+(NSA)
+Pt Gasoline (NSA)  bPt Oil  c Pt Gasoline
+ Pt Gasoline
+ error2,t .
+1
+1
+
+(7)
+
+Equations (6) and (7) can be estimated over some window τL of available data to capture these
+longer-run relationships.10 The estimated coefficients are combined with oil price forecasts Pˆt Oil
+to produce forecasts of Pˆt Gasoline (NSA) and ˆtGasoline (NSA) , which in turn can be seasonally adjusted as
+above to produce ˆtGasoline . Given the CPI and PCE price index release lags, we typically have
+one or two more months of gasoline inflation nowcasts or forecasts, ˆtGasoline
+, k≥0, than we have
+k
+inflation data on the other series.
+
+8
+
+When nowcasting quarterly inflation rates (and hence multiple monthly inflation nowcasts are required), if we
+already have some oil price data in month t then we also use this procedure to forecast ˆtGasoline
+.
+1
+9
+By omitting oil future prices, this assumption further limits the number of variables needed for the exercise without
+sacrificing forecasting accuracy; see Alquist and Kilian (2010) for evidence that a no-change (random walk) forecast
+can beat futures prices as a near-term predictor of oil prices.
+10
+By imposing the constraint b  ˆ , equation (7) admits the gap form Pt Gasoline (NSA)  Pt Gasoline (NSA) 
+
+
+
+Gasoline (NSA)
+t 1
+
+a P
+
+P
+
+Gasoline (NSA)
+t 1
+
+  error .
+
+
+
+
+
+2,t
+
+10
+
+Finally, we can construct nowcasts and forecasts of headline inflation rates using the
+model in equation (3) and weights that vary deterministically with the available state of
+information. We let Zt  [ tCPI ,  tPCE ]' be the aggregate of interest, where  tCPI and  tPCE are the
+month-over-month CPI inflation rate and PCE inflation rate in month t, respectively. The vector
+of relevant disaggregates for headline inflation is
+(8)
+
+Xt   tCore CPI ,  tCore PCE ,  tFood ,  tGasoline  ' .
+
+For states in which we have  tCPI but not  tPCE , the time-varying weights
+(9)
+
+ 0 0
+0
+A s (t )  
+, B s (t )    , Cs (t )  0, D j ,s (t )  0 for all j
+
+ a21 1 
+b2 
+
+can be estimated over a window of data of length τ to forecast ˆtPCE . For states in which we have
+
+ˆ , the time-varying weights
+ˆtGasoline and thus the complete vector X
+t
+(10)
+
+c11 0 c13 c14 
+ b1 
+1 0 
+A s (t )  
+,
+B
+
+,
+C
+
+, D j ,s (t )  0 for all j
+s
+(
+t
+)
+s
+(
+t
+)
+0 c c
+
+
+
+c24 
+0 1 
+23
+b2 
+22
+
+
+ˆ  [ˆ CPI , ˆ PCE ]' . And in
+are estimated over a window of data of length τ and we can forecast Z
+t
+t
+t
+ˆ , we
+states for which we lack ˆtGasoline and thus do not have the complete disaggregate vector X
+t
+use recursive 12-month moving averages by fixing
+(11)
+
+As (t )  I 2 , Bs (t )  0, Cs (t )  0, D j ,s (t )  (1/12)I 2 , J  12 .
+
+III. Data Sources and the Need for Real-Time Data
+
+Implementing the model requires a number of monthly inflation series from the CPI and the PCE
+price index, along with higher frequency data on gasoline and oil prices. These series are readily
+11
+
+available from the BLS, the BEA, and data collection sites, with time series extending decades
+into the past. However, both the CPI and the PCE price index are subject to data revisions—
+from new estimates of seasonal patterns in the case of the CPI to regular comprehensive
+revisions in the case of the PCE price index.11 Thus, the currently available historical time series
+may differ substantially from what would have been available to forecasters at some point in the
+past. In that case, real-time data—which are generally more difficult to come by at the model’s
+monthly frequency, especially beyond the headline price indexes, and have a relatively small
+number of vintages—may be requisite.
+As a first step, we investigate the extent to which the most recent (“final”) vintage data
+differ from real-time data using headline and core inflation in the CPI and PCE price index.
+Monthly real-time data come from the Federal Reserve Bank of St. Louis’ Archival Federal
+Reserve Economic Data (ALFRED). The “final” vintage data are those available as of March
+28, 2014, thus the last available monthly observations for both CPI and PCE are those for
+February 2014. By contrast, the initial inflation readings are the first available ones at the
+monthly or quarterly frequency. The comparisons begin in the middle of 2000, which
+correspond to the earliest availability of monthly real-time PCE inflation measures.12
+Despite the fact that CPI measures are only subject to seasonal revisions and not the
+comprehensive revisions of the PCE measures, data revisions appear substantial when looking at
+either CPI or PCE inflation.13 In terms of quarterly data, Figure 1(a) plots differences between
+
+11
+
+The non-seasonally adjusted CPI is not subject to revisions and is final when published, making year-over-year
+inflation rates computed from that index invariant to the passage of time. For monthly and quarterly inflation
+readings, however, the NSA CPI data are of little use because of predictable seasonal fluctuations.
+12
+We stop the comparison at the end of 2013 because the 2014 CPI readings have not been subject to revision yet.
+The CPI’s seasonal factors for the previous five years are subject to revision once each year is complete: for
+example, after the December 2013 CPI was released, the BLS revised the seasonal factors for 2009 through 2013.
+13
+Faust and Wright (2013) find that “revisions to CPI and core CPI inflation are trivial; but revisions to the other
+inflation measures are large” (p. 9). This may reflect the manner in which they compute revisions. Instead of using
+the final (most recent) vintage of data, they examine inflation as of the real-time rate recorded two quarters after the
+
+12
+
+initial and final vintage headline inflation, while Figure 1(b) plots the differences in core
+inflation. The characteristics of revisions do not appear markedly different for the headline
+inflation measures. Table 1 presents statistics on the differences for both quarterly inflation rates
+and monthly inflation rates. Across all measures, the average revision is essentially zero during
+this time. Core CPI revisions are smaller than core PCE revisions. However, headline CPI
+revisions are larger in absolute terms and more volatile than headline PCE revisions.
+Because of the magnitudes of these revisions, using final vintage data and conducting
+pseudo real-time analysis would be problematic for our nowcasting exercise. This is especially
+true when comparing nowcasts to those from other forecasters, as different information sets
+would contaminate the comparisons. As such, the model only utilizes series for which real-time
+historical data are available.
+The ALFRED database contains real-time vintages for the monthly PCE price index and
+core PCE price index starting with the June 2000 readings. Real-time monthly headline CPI
+coverage begins with June 1972, and monthly core CPI coverage begins with November 1996.
+The model also requires a measure of food inflation, and ALFRED has the real-time food CPI
+starting with November 1996.14
+Higher frequency data are available for energy prices. Every Monday, the Energy
+Information Administration (EIA) publishes average retail gasoline prices for all grades based on
+a survey of approximately 800 retail gasoline outlets, with the series beginning in 1993. For oil
+quarter in question. Because the BLS revises the CPI only once per year, this methodology reduces the number of
+possible CPI revisions. In comparing data revisions across countries, Giannone et al. (2012) report that U.S. CPI is
+not revised, which is only the case for year-over-year inflation computed from the NSA CPI.
+14
+Separate food indexes should be used because of coverage differences between the CPI and the PCE price index;
+e.g., nowcasting headline PCE inflation would benefit from having a measure of inflation in food and beverages
+purchased for off-premises consumption, because conceptually these data feed into headline PCE inflation. In turn,
+if an additional CPI release were available, then the CPI for food at home could be used as a proxy for that month’s
+PCE food and beverages purchased for off-premises consumption. Unfortunately, neither the CPI for food at home
+nor the PCE price index for food and beverages purchased for off-premises consumption are available with long
+real-time histories, so the CPI for food is used as the single measure of food inflation.
+
+13
+
+prices, we use Brent crude spot prices from the Financial Times, which are available starting in
+1987. Implicitly, we assume that both series are unrevised and the currently available readings
+correspond to their real-time equivalents.
+The final needed series is the seasonally adjusted CPI for gasoline, which is used to
+seasonally adjust retail gasoline prices from EIA. ALFRED has real-time data on the CPI for
+gasoline starting in April 2011, but we were able to extend the real-time coverage of the gasoline
+CPI back to January 1999 based on data from Haver Analytics.
+Thus, we can perform real-time out-of-sample nowcasting starting with February 1999
+for the CPI and July 2000 for the PCE price index. In total, our nowcasting model uses only 8
+data series—monthly CPI, core CPI, food CPI, gasoline CPI, PCE, and core PCE; weekly retail
+gasoline prices; and daily oil prices—though we have many data vintages to conduct the realtime analysis. Rather than incorporate components’ weights explicitly, the model estimates the
+historical contributions of disaggregated series to the aggregate, including “other” effects that are
+subsumed in the constant terms and may vary over time in response to high-frequency
+fluctuations in key unmodeled inflation components. Coupling these considerations with the
+need to estimate few model parameters, we use short rolling windows (τ=24 monthly
+observations) to capture potential time-variation in the coefficients. In order to ensure that our
+two-stage regression captures the longer-term relationship between oil and gasoline prices, we
+estimate it using a longer rolling window (τL=60 monthly observations). We consider robustness
+to rolling window sizes in Section VI.
+We focus primarily on root mean squared errors (RMSEs) as our measure of nowcasting
+accuracy, which give a sense of the absolute errors involved in nowcasting inflation. We use
+Diebold and Mariano (DM, 1995) tests for equal forecast accuracy between our model’s
+
+14
+
+nowcasts and those from other sources, with the adjustment for small samples of Harvey et al.
+(1997) as applied to nowcasting in Carriero et al. (2012); for simplicity, we report the p-values
+for rejection of the null hypothesis of equal predictive accuracy using MSE as the metric, based
+on two-sided t-statistic tests.
+
+IV. Model Performance at Monthly and Quarterly Horizons
+
+A common finding in the nowcasting literature is that as time passes and additional information
+arrives, nowcasts of the current period generally become more accurate on average (e.g.,
+Bańbura et al. 2013). Our inflation nowcasting model shares this basic property, whether
+examining the ability of the model to nowcast monthly or quarterly inflation. While we focus
+attention on a limited number of cases in this section, the model can produce nowcasts at a daily
+frequency.
+An open question when evaluating real-time nowcast and forecast accuracy is the choice
+of what constitutes the “actual” data realizations (or “truth”), because inflation data releases are
+subject to revisions ex post. Revisions can take a variety of forms, including new seasonal
+factors, the incorporation of more complete source data, and new methodologies. It is also
+difficult to know whether professional forecasters aim to forecast the initial data release, which
+may be seen as a measure of forecasting prowess, or whether their forecasts aim to capture
+subsequent revisions as well, which may or may not be mean zero in expectation. To incorporate
+more complete source data but not necessarily methodological revisions that may have been
+impossible to predict, we treat the BEA’s third estimate of PCE prices as “truth,” similar to Tulip
+
+15
+
+(2009) and a number of other researchers.15 For compatibility, we use the same timing
+convention for both PCE and CPI inflation measures.16
+
+Monthly Nowcasting Performance
+
+Monthly inflation readings come out with a lag: for a given month under consideration,
+the BLS publishes the CPI around the middle of the following month, and the BEA publishes the
+PCE price index around the end of the following month. Over the course of a given month, the
+arrival of the previous month’s inflation estimate contains relevant information and influences
+the current month’s nowcast. Oil prices and retail gasoline prices arrive at the daily and weekly
+frequency, respectively, and the flow of these data sources also impacts the nowcast.
+While precise release dates of these series vary from one month to the next, we illustrate
+the model’s monthly nowcasting performance for CPI and PCE inflation at six representative
+dates listed in Table 2. Case 1 is the final day of the month preceding the target month being
+nowcasted, and case 5 is the last day of the target month. Case 6 is the middle of the month
+following the target month being nowcasted, when the CPI is released and only the PCE price
+index is left to be nowcasted (in this case, backcasted).
+
+15
+
+The third estimate had previously been called the “first final” estimate; see Tulip (2009). At the very end of the
+sample, we treat the last available reading as the “truth.” Note that Tulip (2009) uses quarterly data from the Federal
+Reserve Bank of Philadelphia’s real-time database, so including the third estimate required using the real-time
+reading available two quarters later.
+16
+In computing all statistics related to nowcast accuracy, we exclude nowcasts for PCE and core PCE inflation for
+the months of September 2001 and October 2001 in the monthly exercises, and 2001Q3 and 2001Q4 in the quarterly
+exercises, because these observations are extreme outliers in our short sample. The September 11, 2001, terrorist
+attacks triggered insurance payments that caused a very large, one-time drop in the price index for insurance in
+personal consumption expenditures. The decline in this component was so large that monthly core PCE inflation for
+September 2001 fell dramatically to its lowest recorded reading. The decline was subsequently unwound in October
+2001, thereby boosting core PCE inflation as well. The CPI was not affected by these insurance payments.
+
+16
+
+We run the exercise using the real-time data that would have been available under each of
+our case assumptions, starting with nowcasts of September 2000 and concluding with nowcasts
+of December 2013 monthly inflation rates. Figure 2 plots the monthly RMSEs for the six cases.
+Table 3 displays the model’s monthly RMSEs along with RMSEs from an alternative forecasting
+model using a random walk in monthly inflation, ˆt   t 1 , where the availability of  t 1 varies
+depending on the case.
+Turning first to core inflation, the monthly RMSEs generally change little over time,
+consistent with using recursive 12-month moving averages to forecast missing monthly data, but
+they do drift progressively lower. The arrival of the previous month’s core CPI (case 3)
+produces a trivial reduction in RMSE for core CPI of 0.002 percentage point. This also
+generates a reduction in RMSE for core PCE—the previous month’s core CPI inflation release is
+informative about the as-yet-unobserved rate of core PCE inflation for the preceding month,
+which in turn is used to nowcast the target month’s core PCE inflation rate. We see an additional
+small reduction in RMSE upon the arrival of the previous month’s core PCE (case 5) for the
+same reason. Once the core CPI for the target month being nowcasted is released (case 6),
+bridging that reading to core PCE reduces RMSE by 0.014 percentage point. In a sense, this is
+the first available data release for the month being nowcasted in terms of core inflation. DM
+tests reject the null of equal predictive accuracy in favor of our model over the alternative in
+which monthly inflation follows a random walk, strongly for core CPI inflation and moderately
+for core PCE inflation.
+The pattern is different for headline inflation because of the availability of higherfrequency energy prices. Headline inflation RMSEs decline steadily and significantly over the
+course of time. By day 8 of the month (case 2), when at least one weekly reading on retail
+
+17
+
+gasoline prices is available, RMSEs fall sharply from where they were immediately prior to the
+start of the month, and they drift lower as more gasoline price data accumulate. As with core
+PCE, the accuracy of nowcasting headline PCE inflation further benefits from the arrival of the
+monthly CPI readings, as these provide additional information on the previous month’s PCE
+inflation (case 3). Immediately prior to the inflation releases, nowcasting RMSEs for headline
+CPI and PCE are about one-half their values compared with the day prior to the start of the
+month. DM tests of equal predictive accuracy decisively favor the model over the random walk
+alternatives for headline inflation.17
+In related work, Modugno (2013) uses a factor model with a larger number of data series
+to nowcast year-over-year inflation in the non-seasonally adjusted headline CPI; e.g., nowcasts
+made during the month of July 2013 are for the CPI inflation rate between July 2012 and July
+2013. Using data between January 2001 and December 2011, Modugno (2013) reports nowcast
+RMSEs of 0.23 percentage point on the day after the previous month’s CPI is released, a 56.6
+percent improvement over the 0.53 percentage point RMSEs from a random walk model in
+which year-over-year inflation is expected to remain unchanged from one month to the next. As
+an extension, we can adapt our model to follow Modugno (2013) in nowcasting year-over-year
+inflation.18 Using the same sample period, our model produces RMSEs of 0.16 percentage point
+for year-over-year CPI inflation on the day after the previous month’s CPI is released, for a
+further 30.4 percent gain in RMSE.
+
+17
+
+Because of the very small number of data series in our model, we do not pursue a decomposition of nowcast
+revisions based on news shocks as in, e.g., Modugno (2013) or Bańbura et al. (2013), though such a decomposition
+could be presented in practice. On days in which neither the CPI nor the PCE price index is released (or revised),
+core inflation nowcasts are not revised and any revisions to headline inflation are due to energy (gasoline and oil)
+price movements. The deterministic model switching we implement would modestly complicate the interpretation
+of news shock; see Section VI for an alternative specification that omits model switching.
+18
+To undo the seasonal adjustment in our month-over-month inflation rates to nowcast year-over-year inflation in
+the NSA CPI, we add the difference between the same month’s NSA monthly inflation and SA monthly inflation for
+the previous 3 years to our nowcasted SA estimate.
+
+18
+
+Quarterly Nowcasting Performance
+
+Because there are a larger number of data releases over the course of a quarter, we
+illustrate the model’s quarterly nowcasting performance for CPI and PCE inflation at 14
+representative dates, diagrammed in Figure 3. We again start with the first case on the day prior
+to the start of the quarter, and the thirteenth case is the final day of the quarter. The fourteenth
+case is when the CPI for the third month of the quarter is released, so at that point only the PCE
+measures are left to nowcast for the immediately concluded quarter.
+We compare the model with a number of simple competing statistical forecasts that have
+been shown to have respectable inflation forecasting properties (see Faust and Wright 2013). All
+of the competing forecasts only use the real-time data that would have been available at a given
+point in time within quarter T; e.g., data release lags imply that the last available quarterly
+inflation reading at the very beginning of a quarter would actually be from two quarters earlier.
+Where necessary, the targeted quarter T is forecasted recursively. The competing models are:
+1. A quarterly random walk, where today’s expected inflation rate is equal to the last
+available quarterly reading, ET  T   T 1 .
+2. A four-quarter random walk, where today’s expected annualized quarterly inflation
+rate equals the inflation rate over the last four available quarters,
+ET  T  100( PT 1 / PT 14  1), similar to Atkeson and Ohanian (2001).
+
+3. An AR(1) model,  T  0  1 T 1  eT , estimated using the entire real-time
+(expanding) sample.
+4. An AR(1) model estimated using a real-time five-year rolling window.
+19
+
+5. An AR(4) model,  T   0  i 1i T i  eT , with coefficient estimates based on the
+4
+
+entire expanding real-time sample.
+6. An AR(1) model in inflation gaps, xT  0  1 xT 1  eT , with xT   T   TLR (see
+Kozicki and Tinsley 2001, Cogley et al. 2010, Clark 2011, and Faust and Wright
+2013). Long-run inflation expectations within a quarter,  TLR , are measured by the
+Blue Chip consensus inflation expectation five-to-ten years ahead that would have
+been available in that quarter in real time and are assumed to follow a random walk in
+the future. We estimate the inflation gap coefficients on real-time expanding samples
+with the first gap observation in the second quarter of 1984.19
+7. The unobserved components model with stochastic volatility (UC-SV) from Stock
+and Watson (2007); see also Stock and Watson (2010). For each of our inflation
+series, we begin the UC-SV estimation in the first quarter of 1960 and use the realtime data that would have been available at the time.
+Figure 4 shows the quarterly root mean square nowcast errors from the model and the
+competing statistical forecasts. The statistical forecasts show few changes in forecast accuracy
+across the cases as time goes by; these changes occur when new or revised CPI and PCE data are
+released.20 Because the short sample makes the analysis sensitive to outliers, we exclude the
+fourth quarter of 2008 when computing the RMSEs.21
+
+19
+
+The Blue Chip consensus reports long-run forecasts of CPI inflation and GDP deflator inflation. As in Faust and
+Wright (2013), we assume that long-run forecasts of PCE inflation (and core PCE inflation) are equal to those for
+the GDP deflator, and that long-run forecasts for core CPI inflation are equal to those for headline CPI inflation.
+The long-run forecasts are typically released in March and October. Because March is late in the first quarter, we
+assume the March forecasts were only available in real-time as of the second quarter. Long-run CPI forecasts first
+appeared in March 1983, were not reported in October 1983, then reappeared on a continuous basis starting in
+March 1984.
+20
+The largest revisions to the statistical forecasts’ accuracy occur in case 3 for CPI and case 5 for PCE, when the
+third monthly reading for the previous quarter is released thus completing the quarter and the forecasts are
+conducted using an additional data point. In the case of the AR(1) model with a rolling window, these cases also
+
+20
+
+Figures 4(a) and 4(c) show that the model’s nowcasts for headline inflation—whether
+measured by the CPI or the PCE price index—tend to broadly outperform the forecasts from a
+variety of statistical models. The outperformance is apparent even at the very beginning of the
+exercise (case 1, immediately prior to the start of the quarter). During the first month of the
+quarter, the arrival of high-frequency readings on gasoline and oil prices help to reduce the
+model’s nowcast errors by about one-third. As a result, by the end of the first month of the
+quarter being nowcasted (case 5), the model’s RMSEs are about one-half those from the best
+competing statistical models.22 Nowcasting errors decrease as the quarter goes along and more
+information is accumulated, with a considerable improvement in CPI nowcasting accuracy once
+the first monthly CPI report of the quarter is released (case 7). Immediately prior to the release
+of the quarterly inflation rate, the typical error for headline CPI and PCE inflation is
+approximately ¼ percentage point at an annual rate.
+The model uses a smaller number of variables for core inflation readings, and as a result
+changes in the core inflation nowcasts occur less frequently. Core CPI nowcasts depend only on
+the history of the series, so changes coincide with CPI releases (cases 3, 7, and 11). With each
+subsequent new CPI release, nowcasting accuracy improves, as shown in Figure 4(b).
+Meanwhile, core PCE inflation relies on a combination of past core PCE inflation and core CPI
+readings, if the latter have an additional month of data. Consequently, core PCE inflation
+
+entail dropping an earlier observation. Subsequent changes in forecast accuracy reflect revisions to previous
+months’ releases.
+21
+Quarterly CPI inflation went from about 6 percent at an annual rate in 2008Q3 to −9 percent in 2008Q4. The
+statistical models completely fail to predict this swing in inflation, with absolute errors in the vicinity of 15
+percentage points. By contrast, this paper’s nowcasting model quickly picks up the depths of the swing: by the
+middle of 2008Q4, the model was nowcasting headline CPI inflation of −7 percent, and the nowcast had fallen to −9
+percent by the end of the quarter.
+22
+For headline CPI, the DM test statistics reject the null of equal forecast accuracy at the 10 percent level in case 1,
+at the 5 percent level in case 2, and at the 1 percent level in case 3 and beyond. For headline PCE, the differences
+are statistically significant at the 10 percent level in case 2, at the 5 percent level in cases 3 and 4, and at the 1
+percent level in case 5 and beyond.
+
+21
+
+nowcasting accuracy improves with each additional CPI or PCE release, as shown in Figure 4(d),
+with notable improvement occurring once the first monthly PCE reading of the quarter is
+released (case 9).23 As with headline inflation, immediately prior to the release of the quarterly
+inflation rate the typical error for core inflation is 0.1 to 0.3 percentage point at an annual rate.
+
+V. Nowcasting Horseraces with Professional Forecasters
+
+Recent work by Faust and Wright (2009, 2013) shows that nowcasts of inflation by professional
+forecasters tend to outperform those from statistical models.24 In fact, Faust and Wright (2013)
+go a step further and suggest that subjective forecasts may hold a distinct advantage because of
+their ability to “add expert judgment” to models (p. 20). Improving upon inflation nowcasting is
+not only of interest for its own sake: Faust and Wright (2013) and Del Negro and Schorfheide
+(2013) show that taking advantage of more accurate inflation nowcasts can also improve
+inflation forecasting accuracy at longer horizons.25 Therefore, the true test of an inflation
+nowcasting model is through comparisons with other forecasters.
+In this section, we compare the model’s nowcasts with three benchmarks. The first two
+comparisons come from private forecasters that are available contemporaneously in real-time:
+the monthly Blue Chip Economic Indicators survey and the quarterly Survey of Professional
+Forecasters (SPF) compiled by the Federal Reserve Bank of Philadelphia. The final comparison
+
+23
+
+For core CPI, DM tests reject the null of equal forecast accuracy at the 5 percent level in cases 3 through 6 and at
+the 1 percent level in case 7 and beyond. For core PCE, the DM test statistics are statistically significant at the 1
+percent level in case 7 and beyond.
+24
+Ang et al. (2007) examine forecasts of four-quarter inflation—which are importantly influenced by the nowcast—
+and similarly find strong support for survey inflation forecasts over a number of model-based forecasts.
+25
+These results are not quite as strong when using a mixed-frequency VAR in Schorfheide and Song (2013).
+Nevertheless, the best-fitting MF-VAR in Schorfheide and Song (2013) produces inflation nowcasts with RMSEs
+approximately double those in the Greenbook.
+
+22
+
+uses inflation nowcasts from the Federal Reserve Board’s Greenbook, which are only released to
+the public with a 5-year delay.
+Across all the comparisons, we ensure identical information sets: we match the dates
+when the surveys or Greenbook forecasts were conducted with the real-time data available for
+the model’s nowcasts. We show both RMSEs for the model’s nowcasts and nowcasts from other
+forecasters to give a sense of absolute errors, along with ratios of mean-squared errors expressed
+in terms of the professional forecasters’ errors relative to those from the model.
+The model’s nowcasts in many cases outperform professional forecasters. Real-time data
+availability limits the comparisons to a relatively short time span, with the earliest comparisons
+in 1999. Nevertheless, the model’s nowcasting accuracy for headline inflation tends to easily
+outperform the Blue Chip consensus and the SPF median, especially the former as the quarter
+goes on, and the model’s headline inflation nowcasting accuracy is comparable to the accuracy
+of the Greenbook. Meanwhile, core inflation nowcasting accuracy from the model is not
+statistically distinguishable from nowcasts made by private forecasters or the Board staff.
+
+Illustration: Nowcasting Headline CPI Inflation in 2013Q2
+
+Before conducting formal nowcast comparisons, Figure 5 offers a real-time nowcasting
+illustration using headline CPI inflation in the second quarter of 2013. In the beginning of the
+quarter in April, the Blue Chip consensus nowcast was 1.8 percent at an annual rate. The
+average of the ten highest forecasts was above 2 percent, and the average of the ten lowest
+forecasts was below 1 percent. By mid-May, the Blue Chip consensus nowcast was 1.5 percent;
+around that same time, the median forecast from the Federal Reserve Bank of Philadelphia’s
+
+23
+
+Survey of Professional Forecasters was 1.6 percent. The Blue Chip consensus nowcast fell to 0.5
+percent by early June. In early July, after the end of the second quarter but before the quarterly
+inflation rate was available, the Blue Chip consensus had fallen further to 0 percent.
+We also show the model’s daily nowcasts of headline CPI inflation in the quarter. The
+model began the quarter nowcasting headline inflation of approximately 0 percent; it never
+thought that inflation would be close to 2 percent. After falling off in mid-April alongside
+falling oil prices, it began to move back toward 0 percent in the second half of the month. From
+late April through the end of the quarter, the model expected headline CPI inflation would be in
+the range of 0 to −0.5 percent at an annual rate.
+When the BLS released the June CPI report on July 16, headline CPI inflation for
+2013Q2 came in just below 0 percent. In terms of absolute errors, the model outperformed the
+SPF and the Blue Chip consensus in three of four cases during the quarter.
+
+Comparison with the Blue Chip Economic Indicators Survey
+
+The Blue Chip Economic Indicators survey of private professional forecasters provides
+forecasts of major U.S. economic indicators, including quarterly CPI inflation. Blue Chip
+forecasts start with the first quarter for which complete data are not yet available, which allows
+for nowcasting comparisons. Blue Chip consensus forecasts are averages across the forecasters
+in the survey.
+The Blue Chip survey is typically released around the 10th of each month. However, the
+survey is actually conducted over a two-day period before then, which is usually mentioned in
+
+24
+
+the release. For the purposes of the comparisons, we fix the model’s real-time dataset to match
+the survey period.26
+Given the timing of the Blue Chip survey and the publication of CPI data, we compare
+Blue Chip nowcasting accuracy with the model at four different points in time for each quarter.
+For example, nowcasts of the first quarter are conducted at the January, February, March, and
+April Blue Chip survey dates; the April Blue Chip survey date is about one to two weeks before
+the BLS releases all the data needed to compute first quarter CPI inflation.27 The nowcast
+evaluation spans the second quarter of 1999 through the fourth quarter of 2013.
+As information over the quarter accumulates and we move from Month 1 (at the very
+beginning of the quarter) through Month 4 (the survey from the month immediately following
+the quarter, right before the quarterly CPI is available), nowcasting accuracy improves for both
+the Blue Chip consensus and the nowcasting model. Table 4 shows monotonic reductions in
+RMSEs from both nowcasts across the four cases. However, the model’s nowcasts are more
+accurate on average than Blue Chip nowcasts at each point in time. The outperformance is
+modest in Month 1 and not statistically significant based on the DM test. By Month 2, the
+model’s nowcasting outperformance is quantitatively larger based on RMSE and significant at
+the 5 percent level. In months 3 and 4, the model’s nowcasts generate considerably smaller
+RMSEs, and DM tests decisively reject the null of equal forecast accuracy.
+Figure 6 plots the competing nowcasts from the model and Blue Chip along with the
+actual quarterly CPI inflation rate for each case. As is evident in the figures, overall the model’s
+nowcasts are quite effective in tracking the actual CPI inflation in all four cases, with the cases
+
+26
+
+When the Blue Chip survey dates are not listed, we assume the survey date was the first Thursday of the month.
+If the first Thursday is the first day of the month, we assume the survey date was the first Tuesday of the month.
+27
+Compared with the quarterly exercise in the previous section and in Figure 3, the Blue Chip survey dates roughly
+correspond to cases 2, 6, 10, and 13.
+
+25
+
+later in the quarter doing an excellent job in accurately nowcasting inflation given their expanded
+information sets. However, the outperformance of the model is not universal, as Blue Chip
+nowcasts were sometimes more accurate than those from the model.
+The time period under consideration contains a wide range of events, including the mild
+2001 recession, a long period of rising oil prices, the financial crisis and subsequent plunge in oil
+prices during a deep recession, and the moderate recovery since then. In the face of these events,
+judgmental nowcasts from professional forecasters may have had a large inherent advantage over
+model-based nowcasts, because the former could look outside the model and incorporate other
+information during rapidly changing circumstances. Given that a small number of variables—
+six—determine the model’s CPI nowcasts, this outperformance vis-à-vis Blue Chip is
+particularly noteworthy.
+
+Comparison with the Survey of Professional Forecasters
+
+The SPF is published quarterly and is released around the middle of the second month of
+the quarter. The Federal Reserve Bank of Philadelphia publishes the historical dates on which
+the survey has been conducted; these are typically about one week prior to the release date,
+which means that SPF nowcasts of current quarter inflation are made before the first monthly
+CPI reading for the quarter is released.28 As before, we match information sets that would have
+been available to the professional forecasters with the information set when making the model’s
+nowcasts. The SPF has a long history of reporting CPI forecasts, and we perform CPI nowcast
+comparisons beginning in the second quarter of 1999. The SPF also began to report core CPI
+inflation, headline PCE inflation, and core PCE inflation in the first quarter of 2007, and we
+28
+
+This roughly corresponds to Case 6 from the quarterly exercise in the previous section.
+
+26
+
+conduct comparisons with these three series starting at that point. In all cases, we end the
+comparisons in the fourth quarter of 2013. We use the SPF median nowcasts to eliminate
+outliers and as a check on the Blue Chip consensus exercise, which uses averages.
+Table 5 reports results. The model’s nowcasts for headline CPI and PCE inflation
+outperform the SPF nowcasts by 0.39 and 0.25 percentage point on average, respectively, and
+DM tests reject the null of equal forecast accuracy at the 5 percent level despite the small
+samples. Meanwhile, the nowcasting horseraces between the model and the professional
+forecasters for core inflation are a draw: RMSEs are basically equal, the ratio of MSEs is close to
+1, and the DM tests cannot reject equality of forecast accuracy.
+Figure 7 plots the competing nowcasts from the model and the SPF along with the data
+for each series. As with the Blue Chip comparison, the model does not uniformly beat the SPF
+nowcasts for headline inflation. Rather, the model’s outperformance relates to its ability to
+capture the volatility in inflation; this is especially apparent in the shorter sample in Figure 7(c),
+where the SPF nowcasts tend to be too stable compared with realized inflation.
+We view the results for headline and core inflation as perhaps somewhat surprising. The
+model’s core inflation nowcasts reflect extreme parsimony. Nevertheless, the core inflation
+nowcasts coming from the SPF are quite similar to those from the model, whether looking at the
+statistics in Table 5 or the actual nowcasts in Figure 7(b) and Figure 7(d). This finding raises the
+possibility that professional forecasters are using a roughly similar method for nowcasting core
+inflation, suggesting that our model is essentially capturing professional forecasters’ near-term
+inflation expectations; or, alternative, that a minor variant of Atkeson and Ohanian (2001) is still
+a key inflation forecasting benchmark. The model’s outperformance for headline PCE inflation
+
+27
+
+confirms the earlier findings from the Blue Chip exercise for a second inflation measure and
+offers further evidence that judgmental nowcasts may face limits during extraordinary times.
+
+Comparisons with the Federal Reserve Board’s Greenbook
+
+We also compare our model’s nowcasts with those made by the staff economists at the
+Federal Reserve Board of Governors in the so-called Greenbook. A commonly held view is that
+Greenbook nowcasts and short-term forecasts for inflation and real GDP are the gold standard.
+For example, Romer and Romer (2000) show that Greenbook forecasts prior to 1991 for inflation
+and output were superior to those of private forecasters. Subsequent studies by Sims (2002) and
+Faust and Wright (2007) documented that current-quarter Greenbook inflation forecasts are on
+average superior to a variety of forecasting approaches. Bernanke (2007) briefly describes the
+range of models, indicators, expertise, and extensive judgment used to inform near-term inflation
+forecasts by Board staff.
+Greenbook forecasts are produced in the week prior to each of the Federal Open Market
+Committee’s (FOMC) regularly scheduled meetings. As with the other comparisons, we fix the
+model’s real-time information set based on the Greenbook release date. The eight regular
+FOMC meetings each year have historically been spaced somewhat irregularly, but there are
+essentially two meetings per quarter, one in the first half of the quarter and one in the second
+half. For the sake of our nowcast evaluation exercise, we classify Greenbook nowcasts based on
+whether they were made in the first or second half of the quarter as H1 and H2, respectively; the
+different information sets available either early or late in the quarter make these effectively two
+
+28
+
+different exercises.29 All four inflation measures in the paper are available in Greenbook, and
+our nowcasting exercise starts in the second quarter of 1999 for headline and core CPI inflation
+and the third quarter of 2000 for headline and core PCE inflation. The exercise ends in the
+fourth quarter of 2008, which is the last publicly available Greenbook.
+Table 6 presents the comparisons. Nowcast errors across all inflation metrics decline
+dramatically from the first half of the quarter to the second half as additional information
+accumulates. With the exception of core CPI inflation in the first half of the quarter, the model’s
+nowcast RMSEs are slightly larger than Greenbook’s. However, the differences in forecasting
+accuracy are not large quantitatively nor are they statistically significant.
+Figure 8 plots the inflation nowcasts made in the first and second half of each quarter.
+By the second half of the quarter, the model’s nowcasts are typically very close to the Greenbook
+across all inflation measures and across the entire sample. We interpret the graphical results and
+statistical analyses as suggesting that our model’s nowcasting accuracy is basically comparable
+to the combined judgment, modeling expertise, and resources devoted to inflation nowcasting in
+Greenbook for the time period under consideration.
+
+VI. Assessing Nowcasting Accuracy and Sensitivity
+
+To illustrate key drivers of the model’s nowcasting accuracy, we consider a large number of
+robustness checks to the model and its assumptions—some small (e.g., changing rolling window
+lengths used in estimation) and others large (e.g., dropping disaggregates)—and show their effect
+on quarterly RMSEs in Table 7. The model’s nowcasting performance is highly robust to minor
+
+29
+
+Because of the irregular timing of Greenbook, we place the cutoff for H1 as on or before the 20 th day of the
+middle month of the quarter.
+
+29
+
+variations, but nowcasting performance deteriorates when gasoline inflation is excluded from the
+set of relevant disaggregates and when very long windows are used to estimate parameters.
+We first consider robustness to the length of estimation windows. To capture potential
+time-variation—in relationships between CPI and PCE inflation measures, between disaggregate
+and aggregate measures, as well as in unmodeled inflation components that are subsumed in
+constant terms—we use rolling windows of τ=24 monthly observations to estimate equations (5),
+(9), and (10). Nowcasts benefit from short windows: modestly expanding or contracting the
+window length has a trivial impact on nowcasting accuracy, but accuracy deteriorates as the
+window grows; e.g., with τ=120 months (line 3), quarterly RMSEs for headline inflation increase
+16 to 47 percent on average, and Greenbook headline inflation nowcast outperformance is
+statistically significant. We use a longer window (τL=60 monthly observations) to estimate the
+two-stage regression giving the long-run relationship between oil and gasoline prices. Nowcasts
+are trivially affected as this window expands or contracts modestly, but using very long windows
+or expanding windows on all observations (line 6) causes headline inflation nowcasting RMSEs
+to deteriorate by 15 to 16 percent early in the quarter. We also consider variations in J, which
+governs the number of terms used in forecasting via recursive moving averages. Increasing J
+from the baseline of 12 months causes a bifurcation: RMSEs for core CPI inflation tend to rise,
+while RMSEs for core PCE inflation are slightly lower.
+We also consider changes to the set of disaggregates. Dropping  tFood as a disaggregate
+in nowcasting headline inflation has a minor impact on RMSE (line 10). By contrast, excluding
+energy price measures has a large effect. If daily oil prices are excluded from the model (line
+11), RMSEs increase 9 to 11 percent in the first half of the quarter, suggesting that current oil
+prices are a good predictor of future gasoline prices and, by extension, their influence on
+
+30
+
+inflation.30 Dropping  tGasoline as a disaggregate (line 12) causes a large deterioration in nowcast
+accuracy, as RMSEs for headline inflation increase 40 to 104 percent and subjective nowcasts
+easily outperform the model.
+Finally, we consider changes to the model’s structure. Assuming that the last observed
+oil prices are useful predictors of gasoline prices far into the future—compared with our baseline
+assumption that they are only useful for one month—allows for computing arbitrary ˆtGasoline
+for
+k
+k≥0 and eliminates equation (11); doing so causes a minor increase in RMSE (line 13). A second
+potential change to the model structure is to drop the bridging of core CPI to core PCE and
+headline CPI to headline PCE during the interim when the previous month’s CPI is available but
+before PCE readings are released, thereby eliminating equations (5) and (9). Nowcasts of CPI
+and core CPI are unaffected, but RMSEs for PCE and core PCE rise modestly (line 14),
+suggesting that such a bridging approach assists with nowcasting.31 The third structural change
+combines the previous two by extending the use of oil prices and dropping the bridging
+equations, so that equation (4) is the single model for core inflation nowcasts and equation (10)
+is the single model for headline inflation nowcasts (line 15). RMSEs are modestly higher than
+the baseline, consistent with gains for the types of deterministic model switching we propose.32
+
+In this case, the two-stage regression relating oil and gasoline prices is omitted and ˆtGasoline only enters the model
+if there are weekly data on gasoline prices within month t.
+31
+Providing further evidence that this bridging approach is helpful, Greenbook’s core PCE nowcasts in the first half
+of the quarter are now more accurate than those from this alternative model at the 10 percent level.
+32
+While not reported, we separately consider alternatives in which we replace the default for making forecasts of
+monthly variables as a moving average with J terms (and hence coefficients 1/J) with an AR(p) model estimated
+over a rolling window of length τ=24 months. Employing an AR(1) model produces results that are generally
+similar to the baseline. But nowcasting performance tends to worsen as p becomes larger.
+30
+
+31
+
+VII. Conclusion
+
+This paper develops a new model for nowcasting U.S. headline and core inflation. The model is
+relatively parsimonious, relying on a small number of data series and simple univariate and
+multivariate regressions alongside time-varying weights on disaggregate and aggregate variables
+that take advantage of the state of the information flow over the course of a month or quarter.
+These features contrast with other nowcasting approaches that often utilize large datasets to
+extract common factors. Similar to these other approaches, however, we show that nowcasts of
+both monthly and quarterly inflation improve as time passes and additional information arrives.
+In head-to-head comparisons using real-time data, the model’s nowcasts often outperform
+the best available alternatives: nowcasts from professional forecasters. In particular, the model’s
+nowcasts of headline CPI and PCE inflation generally are more accurate than those from either
+the Blue Chip consensus or the Survey of Professional Forecasters, and they rival the nowcasting
+accuracy of the Greenbook. Nowcasts of core CPI and PCE inflation, which are made using very
+simple univariate techniques in the spirit of Atkeson and Ohanian (2001), are essentially on a par
+with those from the SPF and the Greenbook.
+Given the well-documented difficulties in forecasting inflation, the model developed in
+this paper has the potential to reduce both nowcasting errors and longer-horizon forecasting
+errors for academic economists and professional forecasters. An open question for further
+investigation is whether a similar model with time-varying weights on disaggregate and
+aggregate components could be useful for nowcasting other series, such as GDP. The approach
+that we follow has also stressed the principle of parsimony in nowcasting inflation, relying on
+very few data series. Bringing additional data to bear—for example, by relying on disaggregate
+
+32
+
+information from core goods and core services in nowcasting core inflation, or drilling down to a
+fine level of disaggregation to assist in bridging from core CPI inflation to core PCE inflation
+prior to the release of the latter—has the potential to improve nowcasting accuracy even further
+as real-time data availability increases.
+
+VIII. References
+Alquist, Ron and Lutz Kilian (2010) “What Do We Learn from the Price of Crude Oil Futures?”
+Journal of Applied Econometrics 25(4): 539–73.
+Ang, Andrew, Geert Bekaert, and Min Wei (2007) “Do Macro Variables, Asset Markets, or
+Surveys Forecast Inflation Better?” Journal of Monetary Economics 54(4): 1163–1212.
+Bańbura, Marta, Domenico Giannone, Michele Modugno, and Lucrezia Reichlin (2013) “Nowcasting and the Real-Time Data Flow” in Graham Elliott and Allan Timmermann, eds.,
+Handbook of Economic Forecasting, vol. 2, Elsevier: North Holland.
+Bernanke, Ben S. (2007) “Inflation Expectations and Inflation Forecasting” speech at the
+Monetary Economics Workshop of the National Bureau of Economic Research Summer
+Institute, Cambridge, Massachusetts.
+Carriero, Andrea, Todd E. Clark, and Massimiliano Marcellino (2012) “Real-Time Nowcasting
+with a Bayesian Mixed Frequency Model with Stochastic Volatility” Federal Reserve Bank of
+Cleveland working paper 12–27.
+Clark, Todd E. (2011) “Real-Time Density Forecasts from Bayesian Vector Autoregressions
+with Stochastic Volatility” Journal of Business and Economic Statistics 29(3): 327–41.
+Cogley, Timothy, Giorgio E. Primiceri, and Thomas J. Sargent (2010) “Inflation-Gap Persistence
+in the U.S.” American Economic Journal: Macroeconomics 2(1): 43–69.
+Del Negro, Marco and Frank Schorfheide (2013) “DSGE Model-Based Forecasting” in Graham
+Elliott and Allan Timmermann, eds., Handbook of Economic Forecasting, vol. 2, Elsevier: North
+Holland.
+Diebold, Francis X. and Roberto S. Mariano (1995) “Comparing Predictive Accuracy” Journal
+of Business and Economic Statistics 13(3): 253–63.
+Faust, Jon and Jonathan H. Wright (2007) “Comparing Greenbook and Reduced Form Forecasts
+using a Large Realtime Dataset” NBER Working Paper number 13397.
+
+33
+
+Faust, Jon and Jonathan H. Wright (2013) “Forecasting Inflation” in Graham Elliott and Allan
+Timmermann, eds., Handbook of Economic Forecasting, vol. 2, Elsevier: North Holland.
+Giannone, Domenico, Lucrezia Reichlin, and David H. Small (2006) “Nowcasting GDP and
+Inflation: The Real-Time Informational Content of Macroeconomic Data Releases” European
+Central Bank Working Paper Series No 633.
+Giannone, Domenico, Lucrezia Reichlin, and David Small (2008) “Nowcasting: The Real Time
+Information al Content of Macroeconomic Data Releases” Journal of Monetary Economics
+55(4): 665–76.
+Giannone, Domenico, Jérôme Henry, Magdalena Lalik, and Michele Modugno (2012) “An AreaWide Real-Time Database for the Euro Area” Review of Economics and Statistics 94(4): 1000–
+13.
+Harvey, David, Stephen Leybourne, and Paul Newbold (1997) “Testing the Equality of
+Prediction Mean Squared Errors” International Journal of Forecasting 13(2): 281–91.
+Hendry, David F. and Kirstin Hubrich (2011) “Combining Disaggregate Forecasts or Combining
+Disaggregate Information to Forecast an Aggregate” Journal of Business and Economic
+Statistics 29(2): 216-227.
+Kozicki, Sharon and P.A. Tinsley (2001) “Shifting Endpoints in the Term Structure of Interest
+Rates” Journal of Monetary Economics 47(3): 613–52.
+Lütkepohl, Helmut (2010) “Forecasting Nonlinear Aggregates and Aggregates with Timevarying Weights” CESifo Working Paper No. 3031.
+Modugno, Michele (2013) “Now-casting Inflation Using High Frequency Data” International
+Journal of Forecasting 29(4): 664–75.
+Monteforte, Libero and Gianluca Moretti (2013) “Real-Time Forecasts of Inflation: The Role of
+Financial Variables” Journal of Forecasting 32(1): 51–61.
+Peach, Richard, Robert Rich, and M. Henry Linder (2013) “The Parts Are More Than the Whole:
+Separating Goods and Services to Predict Core Inflation” Federal Reserve Bank of New York
+Current Issues in Economics and Finance 19(7).
+Romer, Christina D. and David H. Romer (2000) “Federal Reserve Information and the Behavior
+of Interest Rates” American Economic Review 90(3):429–57.
+Schorfheide, Frank and Dongho Song (2013) “Real-Time Forecasting with a Mixed-Frequency
+VAR” NBER Working Paper number 19712.
+Sims, Christopher A. (2002) “The Role of Models and Probabilities in the Monetary Policy
+Process” Brookings Papers on Economic Activity 33(2): 1–62.
+34
+
+Stock, James H. and Mark W. Watson (2003) “Forecasting Output and Inflation: The Role of
+Asset Prices” Journal of Economic Literature 41(3): 788–829.
+Stock, James H. and Mark W. Watson (2007) “Why Has Inflation Become Harder to Forecast?”
+Journal of Money, Credit and Banking S39(1): 3–33.
+Stock, James H. and Mark W. Watson (2010) “Modeling Inflation After the Crisis” in
+Macroeconomic Challenges: The Decade Ahead--A Symposium Sponsored by the Federal
+Reserve Bank of Kansas City Federal Reserve Bank of Kansas City: Kansas City, MO.
+Tulip, Peter (2009) “Has the Economy Become More Predictable? Changes in Greenbook
+Forecast Accuracy” Journal of Money, Credit and Banking 41(6): 1217–31.
+
+35
+
+Table 1: Differences between Initial and Final Vintage Inflation Rates
+CPI
+
+Core CPI
+Absolute
+Difference difference
+
+PCE
+Absolute
+Difference difference
+
+Core PCE
+Absolute
+Difference difference
+
+Difference
+
+Absolute
+difference
+
+Monthly Data
+Average
+Standard deviation
+
+0.00
+0.11
+
+0.09
+0.07
+
+0.00
+0.04
+
+0.03
+0.03
+
+-0.01
+0.09
+
+0.07
+0.06
+
+-0.01
+0.07
+
+0.05
+0.05
+
+Quarterly Data
+Average
+Standard deviation
+
+-0.02
+0.66
+
+0.54
+0.37
+
+0.00
+0.24
+
+0.18
+0.15
+
+-0.04
+0.53
+
+0.41
+0.35
+
+-0.11
+0.42
+
+0.32
+0.28
+
+Notes: Monthly inflation rates are non-annualized percent changes, while quarterly inflation rates are annualized
+percent changes. Difference measures are initial readings less final readings. Final vintage inflation data are those
+available as of March 28, 2014. The last available monthly observations for both CPI and PCE inflation are those for
+February 2014. The comparisons begin in June 2000 (2000Q2) and end in December 2013 (2013Q4).
+
+36
+
+Table 2: Monthly Nowcasting Performance Cases
+Date
+
+Case 1
+Case 2
+Case 3
+Case 4
+Case 5
+Case 6
+
+Example: Nowcasting target month is January
+Last day of December, assume have CPI and PCE through
+Last day of the previous month
+November.
+Have at least one weekly retail gasoline reading, have CPI
+Day 8 of the target month
+and PCE through November.
+Have at least two weekly retail gasoline readings, assume
+Day 15 of the target month
+receive CPI for December, have PCE through November.
+Have at least three weekly retail gasoline readings, CPI
+Day 22 of the target month
+through December, PCE through November.
+Have all weekly retail gasoline readings, CPI through
+Last day of the target month
+December, assume receive PCE for December.
+Have all weekly retail gasoline readings, assume receive
+Day 15 of the following month
+CPI for January, have PCE through December.
+
+37
+
+Table 3: Monthly Root Mean Square Nowcast Errors
+Case
+Model
+CPI
+Core CPI
+PCE
+Core PCE
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+0.301
+0.091
+0.210
+0.081
+
+0.196
+0.091
+0.141
+0.081
+
+0.161
+0.089
+0.119
+0.079
+
+0.142
+0.089
+0.106
+0.079
+
+0.136
+0.089
+0.100
+0.078
+
+--0.073
+0.057
+
+0.374***
+0.109***
+0.354***
+0.166*
+
+0.374***
+0.109***
+0.270***
+0.125
+
+--0.270***
+0.125*
+
+Alternative model: Random walk in monthly inflation
+CPI
+0.493***
+0.493***
+0.374***
+Core CPI
+0.113***
+0.113***
+0.109***
+PCE
+0.354***
+0.354***
+0.354***
+Core PCE
+0.166*
+0.166*
+0.166*
+
+Notes: Case 1 is right before the start of the month. Case 2 is day 8 of the month. Case 3 is day 15 of the month, at
+which point the previous month’s CPI is assumed to be available. Case 4 is day 22 of the month. Case 5 is the last day
+of the month, at which point the previous month’s PCE price index is assumed to be available. Case 6 is day 15 of the
+following month, at which point the CPI for the month being nowcasted is assumed to be available. The alternative
+model assumes monthly inflation follows a random walk, ˆt   t 1 . * and *** denote rejection of the null hypothesis
+of equal predictive accuracy of the model and the alternative at the 10% and 1% level, respectively. Inflation rates are
+month-over-month percent changes in seasonally adjusted data, so numbers are expressed in non-annualized percentage
+points. PCE and core PCE statistics exclude September and October 2001. The exercise uses real-time data from
+September 2000 through December 2013.
+
+38
+
+Table 4: Blue Chip CPI Nowcasting Comparisons
+
+Model RMSE
+Blue Chip RMSE
+Ratio, average Blue Chip MSE to model MSE
+Diebold-Mariano p-values for test of equal MSE
+
+Blue Chip survey conducted in:
+Month 1
+Month 2
+Month 3
+Month 4
+1.83
+1.07
+0.48
+0.27
+1.90
+1.45
+0.84
+0.41
+1.07
+1.85
+2.99
+2.21
+0.559
+0.043
+0.001
+0.003
+
+Notes: Comparisons are matched based on Blue Chip survey dates; e.g., when nowcasting the first quarter, month 1
+would refer to the Blue Chip survey date in January, month 2 would be February’s date, and month 3 would be March’s
+date. The Blue Chip survey in month 4 (e.g., April) is conducted prior to the availability of CPI inflation data for the
+previous quarter and is the final nowcast. Quarterly inflation rates are seasonally adjusted annualized percent changes,
+so numbers are expressed in annualized percentage points. The exercise uses real-time data from 1999Q2 through
+2013Q4.
+
+39
+
+Table 5: Survey of Professional Forecasters Nowcasting Comparisons
+
+Model RMSE
+Survey of Professional Forecasters RMSE
+Ratio, average SPF MSE to model MSE
+Diebold-Mariano p-values for test of equal MSE
+
+CPI
+1.00
+1.39
+1.95
+0.019
+
+Core CPI
+0.58
+0.58
+1.01
+0.944
+
+PCE
+0.85
+1.11
+1.68
+0.027
+
+Core PCE
+0.55
+0.52
+0.91
+0.611
+
+Notes: Real-time comparisons are based on the SPF survey dates. SPF expectations for each quarter are the median
+value. Quarterly inflation rates are seasonally adjusted annualized percent changes, so numbers are expressed in
+annualized percentage points. The CPI exercise uses real-time data from 1999Q2 through 2013Q4. The core CPI,
+PCE, and core PCE exercises use real-time data from 2007Q1 (the first available SPF estimates) through 2013Q4.
+
+40
+
+Table 6: Greenbook Nowcasting Comparisons
+CPI
+Model RMSE
+Greenbook RMSE
+Ratio, average Greenbook MSE to model MSE
+Diebold-Mariano p-values for test of equal MSE
+
+H1
+1.34
+1.11
+0.68
+0.225
+
+H2
+0.36
+0.32
+0.80
+0.474
+
+Core CPI
+H1
+H2
+0.51
+0.27
+0.53
+0.27
+1.05
+0.93
+0.775 0.694
+
+PCE
+H1
+1.05
+0.87
+0.69
+0.215
+
+H2
+0.41
+0.35
+0.74
+0.207
+
+Core PCE
+H1
+H2
+0.62
+0.42
+0.56
+0.40
+0.82
+0.87
+0.180 0.446
+
+Notes: Real-time comparisons are based on the Greenbook forecast dates. Forecasts made on or before the 20th day of
+the middle month of the quarter are in H1, and forecasts made after the 20th day of the middle month of the quarter are
+in H2. Quarterly inflation rates are seasonally adjusted annualized percent changes, so numbers are expressed in
+annualized percentage points. The CPI and core CPI exercises use real-time data from 1999Q2 through 2008Q4. The
+PCE and core PCE exercises use real-time data from 2000Q3 through 2008Q4. PCE and core PCE statistics exclude
+2001Q3 and 2001Q4.
+
+41
+
+Table 7: Relative Quarterly RMSEs from Alternative Assumptions
+CPI
+Alternative model assumptions
+1. τ=12 months
+2. τ=36 months
+3. τ=120 months
+4. τL=48 months
+5. τL=72 months
+6. τL=entire expanding real-time sample
+7. J=6 months
+8. J=24 months
+9. J=36 months
+10. Drop πtFood
+11. Drop oil prices as a predictor of πtGasoline
+12. Drop πtGasoline
+13. Extend oil prices as a predictor of πtGasoline
+14. Drop bridging equations
+15. Single models, no model switching
+
+H1
+1.02
+1.00
+1.27
+1.00
+0.99
+1.16
+1.04
+1.01
+1.01
+1.01
+1.11
+1.65
+1.02
+1
+1.02
+
+H2
+1.01
+0.99
+1.47
+1.00
+1.00
+1.05
+1.00
+1.04
+1.05
+1.03
+1.03
+2.04
+1
+1
+1
+
+Core CPI
+H1
+H2
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1.10
+1.01
+1.04
+1.05
+1.06
+1.07
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+
+PCE
+H1
+1.06
+1.01
+1.20
+1.00
+0.99
+1.15
+1.06
+0.98
+0.99
+1.01
+1.09
+1.48
+1.02
+1.03
+1.06
+
+H2
+1.04
+0.98
+1.16
+1.00
+1.00
+1.03
+1.04
+1.00
+1.01
+1.01
+1.01
+1.40
+1
+1.05
+1.05
+
+Core PCE
+H1
+H2
+1.01
+1.03
+1.00
+1.00
+1.00
+1.01
+1
+1
+1
+1
+1
+1
+1.14
+1.06
+0.95
+0.98
+0.96
+0.99
+1
+1
+1
+1
+1
+1
+1
+1
+1.05
+1.09
+1.05
+1.09
+
+Notes: Relative quarterly RMSEs are defined as the alternative model RMSE divided by the baseline model RMSE, so
+numbers greater than 1 imply higher RMSEs from the alternative model assumption(s). H1 (H2) reports the average
+relative quarterly RMSEs for the first (second) half of the quarter, which includes cases 1 through 7 (cases 8 through
+14) as defined in Figure 3. The baseline model features τ=24 months, τL=60 months, and J=12 months.
+
+42
+
+Figure 1: Differences between Initial and Final Vintage Inflation, Quarterly Data
+(a) Headline Inflation
+
+(b) Core Inflation
+
+Notes: Measures are initial readings less final readings. Final vintage inflation data are those available as of March 28,
+2014. The last available observations for both CPI and PCE inflation are those for February 2014. The initial quarterly
+inflation reading is computed as soon as all of the monthly price index readings for the quarter are available.
+
+43
+
+Figure 2: Monthly Root Mean Square Nowcast Errors
+
+Notes: Case 1 is right before the start of the month. Case 2 is day 8 of the month. Case 3 is day 15 of the month, at
+which point the previous month’s CPI is assumed to be available. Case 4 is day 22 of the month. Case 5 is the last day
+of the month, at which point the previous month’s PCE price index is assumed to be available. Case 6 is day 15 of the
+following month, at which point the CPI for the month being forecasted is assumed to be available. Inflation rates are
+month-over-month percent changes, so numbers are expressed in non-annualized percentage points. PCE and core
+PCE statistics exclude September and October 2001. The exercise uses real-time data from September 2000 through
+December 2013.
+
+44
+
+Figure 3: Data Flow Timing
+
+45
+
+Figure 4: Quarterly Root Mean Square Nowcast Errors
+(a) CPI
+
+(b) Core CPI
+
+(c) PCE
+
+(d) Core PCE
+
+46
+
+Notes to Figure 4: See Figure 3 for the timing of the 14 cases. Quarterly inflation rates are seasonally adjusted
+annualized rates, so numbers are expressed in annualized percentage points. All RMSE statistics exclude 2008Q4.
+PCE and core PCE statistics also exclude 2001Q3 and 2001Q4. The exercise uses real-time data from 2000Q4 through
+2013Q4.
+
+47
+
+Figure 5: Real-Time Nowcasts of Headline CPI Inflation in 2013Q2
+
+Notes: The Blue Chip marks show 2013Q2 nowcasts of headline inflation from the Blue Chip Economic Indicators
+surveys that were released in April, May, June, and July of 2013. The SPF median is from the Federal Reserve Bank of
+Philadelphia’s Survey of Professional Forecasters for 2013Q2. The red line shows daily nowcasts of headline CPI
+inflation from the model. The solid black circle is the actual annualized CPI inflation rate in 2013Q2.
+
+48
+
+Figure 6: Model and Blue Chip CPI Inflation Nowcasts
+(a) Month 1
+
+(b) Month 2
+
+(c) Month 3
+
+(d) Month 4
+
+49
+
+Notes to Figure 6: Cases are defined by the Blue Chip survey dates. Month 1 is the Blue Chip survey date for the first
+month of the quarter being nowcasted (e.g., January when nowcasting Q1). Month 2 is the Blue Chip survey date for
+the second month of the quarter being nowcasted. Month 3 is the Blue Chip survey date for the third month of the
+quarter being nowcasted. Month 4 is the Blue Chip survey date for the first month of the quarter following the quarter
+being nowcasted (e.g., April when nowcasting Q1). Quarterly inflation rates are seasonally adjusted annualized percent
+changes. The exercise uses real-time data from 1999Q2 through 2013Q4.
+
+50
+
+Figure 7: Model and SPF Inflation Nowcasts
+(a) Headline CPI
+
+(b) Core CPI
+
+(c) Headline PCE
+
+(d) Core PCE
+
+51
+
+Notes to Figure 7: Real-time comparisons are based on the SPF survey dates. SPF expectations for each quarter are the
+median value. Quarterly inflation rates are seasonally adjusted annualized percent changes. The CPI exercise uses
+real-time data from 1999Q2 through 2013Q4. The core CPI, PCE, and core PCE exercises use real-time data from
+2007Q1 (the first available SPF estimates) through 2013Q4.
+
+52
+
+Figure 8: Model and Greenbook Inflation Nowcasts
+(a) CPI, first half of quarter
+
+(b) CPI, second half of quarter
+
+(c) Core CPI, first half of quarter
+
+(d) Core CPI, second half of quarter
+
+53
+
+Figure 8 (continued): Model and Greenbook Inflation Nowcasts
+(e) PCE, first half of quarter
+
+(f) PCE, second half of quarter
+
+(g) Core PCE, first half of quarter
+
+(h) Core PCE, second half of quarter
+
+54
+
+Notes to Figure 8: Real-time comparisons are based on Greenbook forecast dates. Forecasts made on or before the 20th
+day of the middle month of the quarter are in H1, and forecasts made after the 20th day of the middle month of the
+quarter are in H2. Quarterly inflation rates are seasonally adjusted annualized percent changes, so numbers are
+expressed in annualized percentage points. The CPI and core CPI exercises use real-time data from 1999Q2 through
+2008Q4. The PCE and core PCE exercises use real-time data from 2000Q3 through 2008Q4.
+
+55
+
+
