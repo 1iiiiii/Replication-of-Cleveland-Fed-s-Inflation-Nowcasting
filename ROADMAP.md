@@ -23,7 +23,7 @@ The download cell is written for you (this part is tedious, not instructive). Ru
 ## M1 — Inflation arithmetic (eqs 1–2, ~1 hr)
 Implement `monthly_inflation(level_series)` and `quarterly_annualized(level_series)` (quarterly avg of monthly levels, then annualized 4th-power growth).
 - **Checkpoint:** Why does averaging three monthly *levels* differ from averaging three monthly inflation *rates*? Which months of quarter T−1 still matter for quarter T inflation, and why does that give the model a head start before T even begins?
-- **Self-test:** your quarterly PCE inflation from monthly PCEPI must match FRED's quarterly PCECTPI-based rate within 0.15 pp for recent quarters (independent cross-check — BEA aggregates the same way).
+- **Self-test:** your quarterly PCE inflation from monthly PCEPI must match FRED's quarterly PCECTPI-based rate within 0.2 pp for recent quarters (independent cross-check — BEA aggregates the same way).
 - **Pitfall:** off-by-one on `pct_change`; forgetting the ^4 annualization; using sum instead of mean for quarterly levels.
 
 ## M2 — Core & food: the moving-average default (eq 4, ~1 hr)

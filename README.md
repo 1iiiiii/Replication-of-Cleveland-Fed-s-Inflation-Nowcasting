@@ -6,12 +6,13 @@ Self-guided replication of **Knotek & Zaman (2014), "Nowcasting U.S. Headline an
 
 | File | Role |
 |------|------|
-| `ROADMAP.md` | The curriculum: milestones M0–M7, checkpoint questions, self-tests, your rules |
+| `ROADMAP.md` | The curriculum: milestones M0–M8, checkpoint questions, self-tests, your rules |
 | `TUTOR_PROMPT.md` | Paste into every new AI session — contains the anti-hallucination guardrails |
 | `paper_reference.md` | Condensed ground truth: all equations, data, results. Tutors must cite it |
 | `paper_full_text.txt` | Full extracted paper text, for looking up details |
 | `nowcast_skeleton.ipynb` | Where you work. Data download provided; model code is TODO stubs |
 | `solutions/nowcast_solutions.ipynb` | Reference implementations. Opening rules are in ROADMAP.md |
+| `data/` | Local FRED download cache (git-ignored, auto-created, safe to delete) |
 
 ## How to start each session
 
@@ -21,7 +22,7 @@ Self-guided replication of **Knotek & Zaman (2014), "Nowcasting U.S. Headline an
 
 ## Environment
 
-Python with `pandas`, `numpy`, `statsmodels`, `matplotlib`, `jupyter`. Internet required (data comes from FRED's no-key CSV endpoint — note this endpoint is live, not static: it returns the latest data on every fetch, so it works for real nowcasting too). Yi has a FRED API key: `fredapi` is optional for M0–M6 but required for M7's ALFRED vintage work (`get_series_as_of_date`). Everything was logic-tested on synthetic data on 2026-07-11; the self-tests that hit live FRED data run on your machine.
+Python with `pandas`, `numpy`, `statsmodels`, `matplotlib`, `jupyter` (plus `scikit-learn` for M8). Data comes from the official FRED API via `fredapi`, authenticated by the `FRED_API_KEY` environment variable — setup walkthrough is in the skeleton's M0 section; without a key it falls back to FRED's no-key CSV endpoint. Series are cached in `data/`, so reruns work offline — but the cache freezes the data at download time. For real (live) nowcasting or after a new release, pass `refresh=True` to `fetch_fred` or delete `data/`. The same key unlocks M7's ALFRED vintage work (`fredapi.Fred.get_series_as_of_date`). Everything was logic-tested on synthetic data on 2026-07-11; the self-tests that hit live FRED data run on your machine.
 
 ## If a self-test fails
 
